@@ -20,4 +20,15 @@ describe "Viewing todo items" do
 			expect(page).to have_content("Milk")
 		end
 	end
+
+	it "displays an error with no content" do
+		visit_todo_list(todo_list)
+		click_link "New Todo Item"
+		fill_in "Content", with: ""
+		click_button "Save"
+		within("div.flash") do
+			expect(page).to have_content("Couldn't add that todo item.")
+		end
+		expect(page).to have_content("Content can't be blank")
+	end
 end
