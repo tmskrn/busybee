@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Busybee</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
+<%= nav_bar :fixed => :top, :brand => "busybee", :responsive => true do %>
+    <%= menu_group do %>
+        <%= menu_item "New List", new_todo_list_path %>
+        <%= menu_item "Todo Lists", todo_lists_path %>
+    <% end %>
+<% end %>
+
+<body>
 	<% flash.each do |type, message| %>
 	<div class="alert flash <%= type %>">
 		<%= message %>
